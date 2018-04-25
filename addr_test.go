@@ -21,15 +21,15 @@ func TestAddr(t *testing.T) {
 	check := mkcheck(t)
 
 	type testcase struct {
-		addr net.Addr
-		exp map[string]testAddr
+		addr   net.Addr
+		exp    map[string]testAddr
 		getNil []string
 	}
 
 	tcs := map[string]testcase{
 		"NetOnly": {
 			addr: &net.TCPAddr{
-				IP: net.IPv4(127,0,0,1),
+				IP:   net.IPv4(127, 0, 0, 1),
 				Port: 8008,
 			},
 			exp: map[string]testAddr{
@@ -42,13 +42,13 @@ func TestAddr(t *testing.T) {
 					str: "127.0.0.1:8008",
 				},
 			},
-			getNil: []string{ "sadf" },
+			getNil: []string{"sadf"},
 		},
 		"DoubleWrap": {
 			addr: WrapAddr(
 				WrapAddr(
 					&net.TCPAddr{
-						IP: net.IPv4(127,0,0,1),
+						IP:   net.IPv4(127, 0, 0, 1),
 						Port: 8008,
 					},
 					testAddr{
@@ -77,12 +77,12 @@ func TestAddr(t *testing.T) {
 					str: "127.0.0.1:8008",
 				},
 			},
-			getNil: []string{ "sadf" },
+			getNil: []string{"sadf"},
 		},
 		"SingleWrap": {
 			addr: WrapAddr(
 				&net.TCPAddr{
-					IP: net.IPv4(127,0,0,1),
+					IP:   net.IPv4(127, 0, 0, 1),
 					Port: 8008,
 				},
 				testAddr{
@@ -103,7 +103,7 @@ func TestAddr(t *testing.T) {
 					str: "127.0.0.1:8008",
 				},
 			},
-			getNil: []string{ "sadf" },
+			getNil: []string{"sadf"},
 		},
 	}
 
@@ -118,13 +118,13 @@ func TestAddr(t *testing.T) {
 				}
 
 				b := GetAddr(tc.addr, netw)
-				
-				check(netw + " addr network", exp.net, b.Network())
-				check(netw + " addr string", exp.str, b.String())
+
+				check(netw+" addr network", exp.net, b.Network())
+				check(netw+" addr string", exp.str, b.String())
 			}
 
 			for _, netw := range tc.getNil {
-				check(netw + " get", nil, GetAddr(tc.addr, netw))
+				check(netw+" get", nil, GetAddr(tc.addr, netw))
 			}
 		})
 	}

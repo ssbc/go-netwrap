@@ -9,7 +9,7 @@ import (
 func WrapListener(l net.Listener, f func(net.Conn) (net.Conn, error)) net.Listener {
 	return &listener{
 		Listener: l,
-		f: f,
+		f:        f,
 	}
 }
 

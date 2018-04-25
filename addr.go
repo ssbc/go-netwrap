@@ -25,12 +25,12 @@ func WrapAddr(inner, head net.Addr) net.Addr {
 
 	return &addr{
 		inner: inner,
-		head: head,
+		head:  head,
 	}
 }
 
 type addr struct {
-	head net.Addr
+	head  net.Addr
 	inner net.Addr
 }
 
@@ -54,7 +54,7 @@ func (a *addr) Head() net.Addr {
 // If no such address exists, it returns nil.
 func GetAddr(a net.Addr, netw string) net.Addr {
 	for {
-		if a.Network() == netw || strings.HasSuffix(a.Network(), "|" + netw) {
+		if a.Network() == netw || strings.HasSuffix(a.Network(), "|"+netw) {
 			if a, ok := a.(Addr); ok {
 				return a.Head()
 			}
@@ -69,6 +69,6 @@ func GetAddr(a net.Addr, netw string) net.Addr {
 
 		a = b.Inner()
 	}
-	
+
 	return nil
 }
