@@ -3,9 +3,34 @@
 package netwrap
 
 import (
+	"fmt"
 	"net"
 	"testing"
 )
+
+func ExampleGetAddr() {
+	tcpAddr := &net.TCPAddr{
+		IP:   net.IPv4(127, 0, 0, 1),
+		Port: 8008,
+	}
+
+	ta := testAddr{
+		net: "foo", str: "some-info",
+	}
+
+	wrappedAddr := WrapAddr(tcpAddr, ta)
+	fmt.Println("wrapped:", wrappedAddr.String())
+
+	unwrappedFoo := GetAddr(wrappedAddr, "foo")
+	fmt.Println("foo:", unwrappedFoo.String())
+	unwrappedTCP := GetAddr(wrappedAddr, "tcp")
+	fmt.Println("tcp:", unwrappedTCP.String())
+
+	// Output:
+	// wrapped: 127.0.0.1:8008|some-info
+	// foo: some-info
+	// tcp: 127.0.0.1:8008
+}
 
 type testAddr struct {
 	net, str string

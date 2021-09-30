@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 
+// Package netwrap allows for stacking multiple layers of address onto each other and wrapping connections accordingly to these.
+// Imagine multiple hops of a proxied connection or adding a public key to an expected endpoint.
 package netwrap
 
 import (
@@ -11,6 +13,7 @@ import (
 // ConnWrapper wraps a network connection, e.g. to encrypt the transmitted content.
 type ConnWrapper func(net.Conn) (net.Conn, error)
 
+// Dialer is Dial() but as a function type for alternative dialers (like using a socks proxy)
 type Dialer func(net.Addr, ...ConnWrapper) (net.Conn, error)
 
 // Dial first opens a network connection to the supplied addr, and then applies
