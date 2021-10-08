@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2021 Henry Bubert and Jan Winkelmann
+//
 // SPDX-License-Identifier: MIT
 
 package netwrap

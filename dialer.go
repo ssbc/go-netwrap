@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2021 Henry Bubert and Jan Winkelmann
+//
 // SPDX-License-Identifier: MIT
 
 // Package netwrap allows for stacking multiple layers of address onto each other and wrapping connections accordingly to these.

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 Henry Bubert and Jan Winkelmann
+//
+// SPDX-License-Identifier: Unlicense
+
 module go.cryptoscope.co/netwrap
 
 go 1.13
