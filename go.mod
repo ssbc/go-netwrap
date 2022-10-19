@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Unlicense
 
-module github.com/ssbc/netwrap
+module github.com/ssbc/go-netwrap
 
 go 1.13
 
